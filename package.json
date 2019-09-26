@@ -1,0 +1,18 @@
+{
+  "name": "secilia",
+  "version": "0.0.0",
+  "description": "secilia",
+  "main": "app.js",
+  "author": {
+    "name": "Haikal Handamara",
+    "email": "haikal_adha@hotmail.com"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node app.js"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "typescript": "^3.6.3"
+  }
+}

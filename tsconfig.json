@@ -1,0 +1,12 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2018",
+    "lib": [ "es6", "es2018" ],
+    "sourceMap": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
