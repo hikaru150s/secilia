@@ -4,18 +4,18 @@ const Person_1 = require("./Person");
 const enums_1 = require("../enums");
 const Member_1 = require("./Member");
 class Group {
+    get id() {
+        return this._id;
+    }
     constructor(id, groupOptions = {}) {
         this._id = id;
         this.members = groupOptions.members ? groupOptions.members.map(person => new Member_1.Member(person)) : [];
         this._maxPerson = groupOptions.maxPerson || 5;
         this._minPerson = groupOptions.minPerson || 4;
     }
-    get id() {
-        return this._id;
-    }
     toString() {
         //return `Group ${this._id} [${this.members.map(v => v.name).join(',')}] => len: ${this.length}, het: ${this.heterogeneity}, fit: ${this.fitnessValue}`;
-        return `Group ${this._id.toString().padStart(8, ' ')} => len: ${this.members.length}, het: ${this.heterogeneity.toFixed(5)}, fit: ${this.fitnessValue.toFixed(5)}`;
+        return `Group ${this._id.toString().padStart(8, ' ')} => len: ${this.members.length}, het: ${this.heterogeneity.toFixed(5)}, fit: ${this.fitnessValue.toFixed(5)}, member: ${this.members.map(v => v.person.toString())}`;
     }
     pushMember(incoming) {
         this.members.push((incoming instanceof Person_1.Person) ? new Member_1.Member(incoming) : incoming);

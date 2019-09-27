@@ -1,14 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Person {
-    constructor(options = {}) {
-        this.name = options.name || '';
-        this.personality = options.personality || { O: 1, C: 1, E: 1, A: 1, N: 1 };
-        this.interval = options.interval || 1;
-        this.MB = options.MB || 1;
-        this.TK = options.TK || 1;
-        this.SK = options.SK || 1;
-    }
     static generateRandom(name) {
         let p = new Person();
         p.name = name || 'New Person';
@@ -28,6 +20,14 @@ class Person {
     get type() {
         let maxScore = Math.max(this.personality.O, this.personality.C, this.personality.E, this.personality.A, this.personality.N);
         return Object.keys(this.personality).filter((v) => this.personality[v] === maxScore);
+    }
+    constructor(options = {}) {
+        this.name = options.name || '';
+        this.personality = options.personality || { O: 1, C: 1, E: 1, A: 1, N: 1 };
+        this.interval = options.interval || 1;
+        this.MB = options.MB || 1;
+        this.TK = options.TK || 1;
+        this.SK = options.SK || 1;
     }
     getScore() {
         return this.interval + this.MB + this.TK + this.SK;

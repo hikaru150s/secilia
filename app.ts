@@ -2,10 +2,10 @@
 import { OceanType } from "./enums";
 
 // 1. Create Population
-const populationSize = 357;
+const populationSize = 4000;
 const maxGroupSize = 5;
 const minGroupSize = 4;
-const maxIteration = 0; // No Cross-Over mode
+const maxIteration = 1000; // No Cross-Over mode
 const minFitnessValue = 1.0;
 
 let population: Person[] = new Array<Person>();
@@ -72,10 +72,12 @@ const isFit = (groups: Group[]): boolean => groups.every(group => group.fitnessV
 
 // 4. Iterate until all groups is fit or max iteration reached
 while (isFit(groups) === false && iteration < maxIteration) {
+    console.log(`Iteration ${iteration.toString().padStart(8, ' ')}, total fitted group: ${groups.filter(v => v.fitnessValue >= minFitnessValue).length.toString().padStart(4, ' ')}, average fitness:`, (groups.map(group => group.fitnessValue).reduce((p, c) => p += c) / groups.length).toPrecision(12));
+
     // (5 + 6).1. Sort groups by its fitness value descending (Filtered by only unfit groups)
     let alreadyFitGroups = groups.filter(group => group.fitnessValue >= minFitnessValue);
     let sortedUnfitGroups = groups.filter(group => group.fitnessValue < minFitnessValue).sort((a, b) => b.fitnessValue - a.fitnessValue);
-
+    //console.log('Starting:', sortedUnfitGroups.map(v => v.members.length));
     // Select/mark on each group
     sortedUnfitGroups.forEach(group => {
         // Due to confusion of selection criteria method, an anti-fitness procedure will be applied by reversing fitness function and select the most unfit member
@@ -171,5 +173,39 @@ while (isFit(groups) === false && iteration < maxIteration) {
     });
 
     // Cross Over
-
+    //  Generate Poll
+    let memberPoll: Member[] = new Array<Member>();
+    sortedUnfitGroups.forEach(group => {
+        let keepSearch = true;
+        while (group.members.some(member => member.isMarked) && keepSearch) {
+            let selected = group.members.findIndex(member => member.isMarked);
+            if (selected >= 0) {
+                memberPoll.push(group.popMember(selected));
+            } else {
+                keepSearch = false;
+            }
+        }
+    });
+    
+    //  Fill group sequentially
+    let crossOverCounter = 0;
+    memberPoll = memberPoll.sort((a, b) => b.person.interval - a.person.interval); // Sort descending by interval
+    while (memberPoll.length > 0 && !sortedUnfitGroups.every(group => group.members.length >= minGroupSize)) {
+        //console.log(`Path 4, poll now: ${memberPoll.length.toString().padStart(4, ' ')}, groups:`, sortedUnfitGroups.map(v => v.members.length));
+        if (sortedUnfitGroups[crossOverCounter % sortedUnfitGroups.length].members.length < minGroupSize) {
+            sortedUnfitGroups[crossOverCounter % sortedUnfitGroups.length].pushMember(memberPoll.shift());
+        }
+        crossOverCounter += 1;
+    }
+    crossOverCounter = 0;
+    while (memberPoll.length > 0) {
+        //console.log(`Path 5, poll now: ${memberPoll.length.toString().padStart(4, ' ')}, groups:`, sortedUnfitGroups.map(v => v.members.length));
+        sortedUnfitGroups[crossOverCounter % sortedUnfitGroups.length].pushMember(memberPoll.shift());
+        crossOverCounter += 1;
+    }
+    // Re-join group
+    groups = alreadyFitGroups.concat(sortedUnfitGroups);
+    iteration += 1;
 }
+
+console.log('Result:', groups.sort((a, b) => b.fitnessValue - a.fitnessValue).map(g => g.toString()));

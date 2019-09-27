@@ -22,7 +22,7 @@ export class Group {
 
     public toString(): string {
         //return `Group ${this._id} [${this.members.map(v => v.name).join(',')}] => len: ${this.length}, het: ${this.heterogeneity}, fit: ${this.fitnessValue}`;
-        return `Group ${this._id.toString().padStart(8, ' ')} => len: ${this.members.length}, het: ${this.heterogeneity.toFixed(5)}, fit: ${this.fitnessValue.toFixed(5)}`;
+        return `Group ${this._id.toString().padStart(8, ' ')} => len: ${this.members.length}, het: ${this.heterogeneity.toFixed(5)}, fit: ${this.fitnessValue.toFixed(5)}, member: ${this.members.map(v => v.person.toString())}`;
     }
 
     public pushMember(incoming: Person | Member) {

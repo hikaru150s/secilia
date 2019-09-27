@@ -1,7 +1,8 @@
 {
   "name": "secilia",
-  "version": "0.0.0",
-  "description": "secilia",
+  "version": "0.0.1",
+  "description": "A genetic-based group optimization",
+  "license": "MIT",
   "main": "app.js",
   "author": {
     "name": "Haikal Handamara",

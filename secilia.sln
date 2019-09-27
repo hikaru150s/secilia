@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "secilia", "secilia.njsproj", "{6E3B33B8-4502-48C7-BCAC-B401A1B9C42A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E3B33B8-4502-48C7-BCAC-B401A1B9C42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3B33B8-4502-48C7-BCAC-B401A1B9C42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3B33B8-4502-48C7-BCAC-B401A1B9C42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3B33B8-4502-48C7-BCAC-B401A1B9C42A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03148CE8-10B1-4CF3-A349-6CD20A11E2FE}
+	EndGlobalSection
+EndGlobal
