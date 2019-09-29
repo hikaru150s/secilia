@@ -4,7 +4,7 @@
 3. Run following code on your console.
 
     ```
-    git clone https://github..com/hikaru150s/secilia.git
+    git clone https://github.com/hikaru150s/secilia.git
     cd ./secilia
     npm install
     ```
