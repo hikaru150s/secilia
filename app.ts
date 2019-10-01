@@ -1,4 +1,58 @@
-﻿import { Person, Group, Member } from "./classes";
+﻿/**
+ * Hint:
+ * 1.   Most of the operation are utilize function-oriented programming (like .map(), .reduce(), .filter()) which provides ease of use for math-based problems (and shorter code, too).
+ *      Here are a few example of some utilized function-oriented programming.
+ *      
+ *      a.  .map()      =>  result a new array with each element of array has been projected by mapper function.
+ *      
+ *          -   Procedural Programming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let b = [0, 0, 0, 0, 0, 0];
+ *              for (let i = 0; i < a.length; i++) {
+ *                  b[i] = a[i] * 4;
+ *              }
+ *              
+ *          -   Function-Oriented Programming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let b = a.map(num => num * 4);
+ *              
+ *      b.  .reduce()   =>  result a reduced value from each element of array (in layman terms, reduce the array dimension).
+ *      
+ *          -   Procedural Programming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let b = 0;
+ *              for (let i = 0; i < a.length; i++) {
+ *                  b = b + a[i];
+ *              }
+ *              
+ *          -   Function-Oriented Progamming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let b = a.reduce((prev, current) => prev + current)
+ *              
+ *      c.  .filter()   =>  result a new array which satisfy the filter function.
+ *      
+ *          -   Procedural Programming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let t = [null, null, null, null, null, null];
+ *              let j = 0;
+ *              for (let i = 0; i < a.length; i++) {
+ *                  if (a[i] % 2 === 0) {
+ *                      t[j] = a[i];
+ *                      j = j + 1;
+ *                  }
+ *              }
+ *              let b = new Array(j + 1);
+ *              for (let i = 0; i < b.length; i++) {
+ *                  b[i] = t[i];
+ *              }
+ *              
+ *          -   Function-Oriented Programming
+ *              let a = [5, 3, 7, 8, 1, 2];
+ *              let b = a.filter(num => num % 2 === 0);
+ *              
+ * 2.   Math operation sum (∑ f(x)) is denoted by .map(x => f(x)).reduce((p, c) => p + c) (Because Sum operation is a limited MapReduce with addition function as its reducer).
+ */
+import { Person, Group, Member } from "./classes";
 import { OceanType } from "./enums";
 
 // 1. Create Population
