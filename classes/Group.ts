@@ -71,7 +71,7 @@ export class Group {
             });
         let iterable = Object.keys(packed).map(key => packed[key] as number[]);
         if (iterable.every(val => val.length < 3 && val.every((v, i, a) => i === a.indexOf(v)))) {
-            score += 0.25;
+            score += 1;
         }
 
         // Fitness rule 2: Confused when multi-typed person appeared, seems ignoring multi-typed person here
@@ -79,19 +79,19 @@ export class Group {
             .filter(v => v.person.type.length === 1) // Ignoring multi-typed person
             .map(v => v.person.type[0]);
         if (types.includes(OceanType.C) || types.includes(OceanType.E)) {
-            score += 0.25;
+            score += 1;
         }
 
         // Fitness rule 3: Confused when multi-typed person appeared, seems ignoring multi-typed person here
         if ((packed.C.length === 1 && packed.E.length === 0) || (packed.C.length === 0 && packed.E.length === 1)) {
-            score += 0.25;
+            score += 1;
         }
 
         // Fitness rule 4
         if (this.members.filter(v => v.person.type.length > 1).length === 1) {
-            score += 0.25;
+            score += 1;
         }
 
-        return score;
+        return score / 4;
     }
 }

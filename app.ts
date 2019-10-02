@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Hint:
  * 1.   Most of the operation are utilize function-oriented programming (like .map(), .reduce(), .filter()) which provides ease of use for math-based problems (and shorter code, too).
  *      Here are a few example of some utilized function-oriented programming.
